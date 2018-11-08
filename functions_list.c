@@ -35,7 +35,7 @@ int push (listS* head_init, int dane)
 
 int pop_front(listS* head_init, int* value)
 {
-	if(head_init->head == NULL)
+	if (head_init->head == NULL)
 	{
 		return -1;
 	}
