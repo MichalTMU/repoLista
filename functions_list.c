@@ -22,7 +22,7 @@ int push (listS* head_init, int dane)
 
 	nodeS* current_ptr = head_init->head;
 
-	while(current_ptr->next_Node != NULL)
+	while (current_ptr->next_Node != NULL)
 	{
 		current_ptr = current_ptr->next_Node;
 	}
