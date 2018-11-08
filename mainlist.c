@@ -1,9 +1,3 @@
-/*
- ============================================================================
- Name        : mainlist.c
- Author      : Michal
- ============================================================================
- */
 #include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>
@@ -22,10 +16,10 @@ int main(void)
 	push(HEAD, 12);
 	push(HEAD, 14);
 
-	pop_front(HEAD, &valueMain); //usuwam pierwszego węzeł(2)
+	pop_front(HEAD, &valueMain);
 	printf("Dane z pierwszego Noda po wykonaniu pop_front'a = %d\n", valueMain);
 
-	pop_back(HEAD, &valueMain);  // usuwam ostatni węzeł (14)
+	pop_back(HEAD, &valueMain);
 	printf("Dane z ostatniego Noda po wykonianiu pop_back'a = %d\n", valueMain);
 
 	print(HEAD);
@@ -93,7 +87,7 @@ Test (test, pop_nodes)
 	int data = 0;
 	int value_test = 3;
 
-	for(int i=0; i<6; i++)
+	for (int i=0; i<6; i++)
 	{
 		push(HEAD,i*value_test);
 		pop_front(HEAD, &data);
