@@ -1,24 +1,15 @@
-/*
- ============================================================================
- Name        : mainlist.c
- Author      : Michal
- ============================================================================
- */
 #include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>
 #include "functions_list.h"
 
-// head_init
 listS* init()
 {
 	listS* HEAD = (listS*)malloc(sizeof(listS));
-	//assert(HEAD);
 	HEAD->head = NULL;
 	return HEAD;
 }
 
-// Funkcja dodawania elementu
 int push (listS* head_init, int dane)
 {
 	if (head_init->head == NULL)
@@ -41,7 +32,7 @@ int push (listS* head_init, int dane)
 		current_ptr->next_Node = NULL;
 		return 0;
 }
-// Usuwanie pierwszego węzła listy
+
 int pop_front(listS* head_init, int* value)
 {
 	if(head_init->head == NULL)
@@ -49,7 +40,7 @@ int pop_front(listS* head_init, int* value)
 		return -1;
 	}
 
-	nodeS* current_ptr = head_init->head;  //dereferencja head'a, aby uzyskać jego obecną postać
+	nodeS* current_ptr = head_init->head;
 	*value = head_init->head->data;
 	head_init->head = head_init->head->next_Node;
 	free(current_ptr);
@@ -58,19 +49,17 @@ int pop_front(listS* head_init, int* value)
 	return 0;
 }
 
-// Usuwanie ostatniego węzła listy
 int pop_back(listS* head_init, int* value)
 {
-	if (head_init->head == NULL) //0 node
+	if (head_init->head == NULL)
 	{
 		return -1;
 	}
 
 	nodeS* current_ptr = head_init->head;
 	nodeS* next_ptr = current_ptr->next_Node;
-	//nodeS* next_ptr = head_init->head->next_Node;
 
-	if (head_init->head->next_Node == NULL) //1 node
+	if (head_init->head->next_Node == NULL)
 		{
 			free(current_ptr);
 			next_ptr->next_Node = NULL;
@@ -89,7 +78,6 @@ int pop_back(listS* head_init, int* value)
 	return 0;
 }
 
-// Drukowanie danych i adresu węzłow listy
 int print(listS* head_init)
 {
 	if (head_init->head == NULL)
@@ -110,7 +98,6 @@ int print(listS* head_init)
 	return 0;
 }
 
-// Czyszczenie listy
 int clear(listS* head_init)
 {
 	if (head_init->head == NULL)
@@ -123,13 +110,11 @@ int clear(listS* head_init)
 	while (current_ptr!= NULL)
 	{
 		nodeS* next_ptr = current_ptr->next_Node;
-		//nodeS* next_ptr = head_init->head;
 		free(current_ptr);
 		current_ptr = next_ptr;
 	}
 
 	head_init->head = NULL;
-	//free(head_init);
 	return 0;
 }
 
