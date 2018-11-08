@@ -12,48 +12,45 @@
 // head_init
 listS* init()
 {
-	listS* HEAD = (listS*)malloc(sizeof(listS)); 	// alokuje węzeł do sterty
-	assert(HEAD);
+	listS* HEAD = (listS*)malloc(sizeof(listS));
+	//assert(HEAD);
 	HEAD->head = NULL;
 	return HEAD;
 }
 
-// Dokładanie kolejnego węzła(Noda)
+// Funkcja dodawania elementu
 int push (listS* head_init, int dane)
 {
-		// tworzę zmienna lokalną, która wskazuje na pierwszy element listy(head)
 	if (head_init->head == NULL)
 	{
-		head_init->head = malloc(sizeof(nodeS)); //alokuję węzeł do sterty (head)
-		head_init->head->data = dane; 			// przypisuje dane w pierwszym węźle
-		head_init->head->next_Node = NULL; 		// alokuje następny węzeł do sterty
+		head_init->head = (nodeS*)malloc(sizeof(nodeS));
+		head_init->head->data = dane;
+		head_init->head->next_Node = NULL;
 		return 0;
 	}
 
 	nodeS* current_ptr = head_init->head;
-	while(current_ptr->next_Node != NULL) 		// zwraca false jeśli current_ptr jest Null'em. True jeśli jest inny.
+
+	while(current_ptr->next_Node != NULL)
 	{
 		current_ptr = current_ptr->next_Node;
 	}
-		current_ptr->next_Node = malloc(sizeof(nodeS));
+		current_ptr->next_Node = (nodeS*)malloc(sizeof(nodeS));
 		current_ptr->next_Node->data = dane;
 		current_ptr = current_ptr->next_Node;
 		current_ptr->next_Node = NULL;
-
 		return 0;
-		//current_ptr->next_Node   //current_ptr wskazuje element listy. wyrażenie current_ptr->next zwraca wartość next obiektu.
 }
-
 // Usuwanie pierwszego węzła listy
-int pop_front(listS* head_init)
+int pop_front(listS* head_init, int* value)
 {
-	//gdy po headzie nie ma żadnego węzła(pusta lista)
 	if(head_init->head == NULL)
 	{
-		printf("Nic tu nie ma");
-		return 0;
+		return -1;
 	}
+
 	nodeS* current_ptr = head_init->head;  //dereferencja head'a, aby uzyskać jego obecną postać
+	*value = head_init->head->data;
 	head_init->head = head_init->head->next_Node;
 	free(current_ptr);
 	current_ptr = NULL;
@@ -62,28 +59,31 @@ int pop_front(listS* head_init)
 }
 
 // Usuwanie ostatniego węzła listy
-int pop_back(listS* head_init)
+int pop_back(listS* head_init, int* value)
 {
-	//gdy po headzie nie ma żadnego węzła(pusta lista)
-	if (head_init->head == NULL)
+	if (head_init->head == NULL) //0 node
 	{
-		printf("Nic tu nie ma");
-		return 0;
+		return -1;
 	}
-	nodeS* current_ptr = head_init->head;	      //dereferencja head'a, aby uzyskać jego obecną postać
-	nodeS* next_ptr = head_init->head->next_Node; //dereferencja nastepnego wezła
 
-	while (next_ptr->next_Node != NULL) 	 	  // zwraca false jeśli next_ptr jest Null'em, True jesli ma inna wartosc
+	nodeS* current_ptr = head_init->head;
+	nodeS* next_ptr = current_ptr->next_Node;
+	//nodeS* next_ptr = head_init->head->next_Node;
+
+	if (head_init->head->next_Node == NULL) //1 node
+		{
+			free(current_ptr);
+			next_ptr->next_Node = NULL;
+			return 0;
+		}
+
+	while (next_ptr->next_Node != NULL)
 	{
 		next_ptr = next_ptr->next_Node;
 		current_ptr = current_ptr->next_Node;
 	}
-	if (head_init->head->next_Node == NULL)
-	{
-		free(current_ptr);
-		next_ptr->next_Node = NULL;
-		return 0;
-	}
+
+	*value = next_ptr->data;
 	free(next_ptr);
 	current_ptr->next_Node = NULL;
 	return 0;
@@ -92,21 +92,19 @@ int pop_back(listS* head_init)
 // Drukowanie danych i adresu węzłow listy
 int print(listS* head_init)
 {
-	// wskaźnik current_ptr węzeł który obecnie drukujemy. Gdy wydrukuje wartość danego węzła, przechodzimy
-	//  do następnego węzła i drukujemy jego wartość i tak dopóki nie dojdziemy do NULLa.
-
 	if (head_init->head == NULL)
 	{
-		printf("Lista jest pusta");
-		return 1;
+		printf(" Lista jest pusta");
+		return -1;
 	}
 
 	nodeS* current_ptr = head_init->head;
-	while (current_ptr != NULL) // zwraca false jeśli current_ptr jest Null'em. True jeśli jest inny.
+
+	while (current_ptr != NULL)
 	{
 		nodeS* next_ptr = current_ptr->next_Node;
 		printf("Wartosc Node'a =  %d\n", current_ptr->data);
-		printf("Adres Node'a   = %p\n",current_ptr->next_Node);
+		printf("Adres Node'a   = %p\n", current_ptr->next_Node);
 		current_ptr = next_ptr;
 	}
 	return 0;
@@ -115,15 +113,23 @@ int print(listS* head_init)
 // Czyszczenie listy
 int clear(listS* head_init)
 {
-	nodeS* current_ptr = head_init->head; //dereferencja Head'a, aby uzyskać jego obecną postać
+	if (head_init->head == NULL)
+	{
+		return -1;
+	}
 
-	while (current_ptr != NULL)  //zwraca false jeśli current_ptr jest Null'em. True jeśli jest inny.
+	nodeS* current_ptr = head_init->head;
+
+	while (current_ptr!= NULL)
 	{
 		nodeS* next_ptr = current_ptr->next_Node;
 		//nodeS* next_ptr = head_init->head;
 		free(current_ptr);
 		current_ptr = next_ptr;
 	}
+
+	head_init->head = NULL;
+	//free(head_init);
 	return 0;
 }
 
