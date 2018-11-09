@@ -11,6 +11,11 @@ listS* init()
 
 int push(listS* head_init, const int dane)
 {
+	if (head_init == NULL)
+	{
+		return -1;
+	}
+	
 	if (head_init->head == NULL)
 	{
 		head_init->head = (nodeS*)malloc(sizeof(nodeS));
