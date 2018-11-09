@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <assert.h>
 #include "functions_list.h"
 
 listS* init()
@@ -10,7 +9,7 @@ listS* init()
 	return HEAD;
 }
 
-int push(listS* head_init, int dane)
+int push(listS* head_init, const int dane)
 {
 	if (head_init->head == NULL)
 	{
