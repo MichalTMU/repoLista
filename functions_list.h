@@ -1,7 +1,6 @@
 #ifndef FUNCTIONS_LIST_H_
 #define FUNCTIONS_LIST_H_
 
-
 typedef struct nodeS
 	{
 	int data;
