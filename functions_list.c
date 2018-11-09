@@ -10,7 +10,7 @@ listS* init()
 	return HEAD;
 }
 
-int push (listS* head_init, int dane)
+int push(listS* head_init, int dane)
 {
 	if (head_init->head == NULL)
 	{
