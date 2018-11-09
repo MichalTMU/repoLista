@@ -13,7 +13,7 @@ typedef struct listS
 	} listS;
 
 listS* init();
-int push(listS* head_init, int dane);
+int push(listS* head_init, const int dane);
 int pop_front(listS* head_init, int* value);
 int pop_back(listS* head_init, int* value);
 int print(listS* head_init);
