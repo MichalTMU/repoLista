@@ -45,7 +45,6 @@ int pop_front(listS* head_init, int* value)
 	head_init->head = head_init->head->next_Node;
 	free(current_ptr);
 	current_ptr = NULL;
-
 	return 0;
 }
 
@@ -117,8 +116,3 @@ int clear(listS* head_init)
 	head_init->head = NULL;
 	return 0;
 }
-
-
-
-
-
