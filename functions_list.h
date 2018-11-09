@@ -20,6 +20,3 @@ int print(listS* head_init);
 int clear(listS* head_init);
 
 #endif /*FUNCTIONS_LIST_H_*/
-
-
-
