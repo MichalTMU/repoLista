@@ -5,6 +5,10 @@
 listS* init()
 {
 	listS* HEAD = (listS*)malloc(sizeof(listS));
+	if (!HEAD)
+	{
+		return NULL;
+	}
 	HEAD->head = NULL;
 	return HEAD;
 }
