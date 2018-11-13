@@ -34,6 +34,10 @@ int push(listS* head_init, const int dane)
 	{
 		current_ptr = current_ptr->next_Node;
 	}
+		if (!HEAD)
+	{
+		return NULL;
+	}
 		current_ptr->next_Node = (nodeS*)malloc(sizeof(nodeS));
 		current_ptr->next_Node->data = dane;
 		current_ptr = current_ptr->next_Node;
