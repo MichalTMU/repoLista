@@ -13,40 +13,39 @@ listS* init()
 	return HEAD;
 }
 
-int push(listS* head_init, const int dane)
+int push(listS* head_init, const int val)
 {
 	if (head_init == NULL)
 	{
 		return -1;
 	}
-	
+
 	if (head_init->head == NULL)
 	{
 		head_init->head = (nodeS*)malloc(sizeof(nodeS));
-		head_init->head->data = dane;
+		head_init->head->data = val;
 		head_init->head->next_Node = NULL;
 		return 0;
 	}
 
 	nodeS* current_ptr = head_init->head;
-
 	while (current_ptr->next_Node != NULL)
 	{
 		current_ptr = current_ptr->next_Node;
 	}
-		if (!HEAD)
-	{
-		return NULL;
-	}
-		current_ptr->next_Node = (nodeS*)malloc(sizeof(nodeS));
-		current_ptr->next_Node->data = dane;
-		current_ptr = current_ptr->next_Node;
-		current_ptr->next_Node = NULL;
-		return 0;
+	current_ptr->next_Node = (nodeS*)malloc(sizeof(nodeS));
+	current_ptr->next_Node->data = val;
+	current_ptr = current_ptr->next_Node;
+	current_ptr->next_Node = NULL;
+	return 0;
 }
 
 int pop_front(listS* head_init, int* value)
 {
+	if (head_init == NULL)
+	{
+		return -1;
+	}
 	if (head_init->head == NULL)
 	{
 		return -1;
@@ -62,6 +61,10 @@ int pop_front(listS* head_init, int* value)
 
 int pop_back(listS* head_init, int* value)
 {
+	if (head_init == NULL)
+	{
+		return -1;
+	}
 	if (head_init->head == NULL)
 	{
 		return -1;
@@ -91,6 +94,10 @@ int pop_back(listS* head_init, int* value)
 
 int print(listS* head_init)
 {
+	if (head_init == NULL)
+	{
+		return -1;
+	}
 	if (head_init->head == NULL)
 	{
 		printf(" Lista jest pusta");
