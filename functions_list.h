@@ -1,0 +1,22 @@
+#ifndef FUNCTIONS_LIST_H_
+#define FUNCTIONS_LIST_H_
+
+typedef struct nodeS
+	{
+	int data;
+	struct nodeS* next_Node;
+	} nodeS;
+
+typedef struct listS
+	{
+	nodeS* head;
+	} listS;
+
+listS* init();
+int push(listS* head_init, const int dane);
+int pop_front(listS* head_init, int* value);
+int pop_back(listS* head_init, int* value);
+int print(listS* head_init);
+int clear(listS* head_init);
+
+#endif /*FUNCTIONS_LIST_H_*/
